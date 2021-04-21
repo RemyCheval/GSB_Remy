@@ -85,11 +85,6 @@ if($result->num_rows > 0) {
         $userN = $donnees["nom"];
         $userP = $donnees["prenom"];
         $userID = $donnees["id"];
-        $userAd=  $donnees["adresse"];
-        $userVille=  $donnees["ville"];
-        $userCp=  $donnees["cp"];
-        $userCoef=  $donnees["coefNotoriete"];
-        $userLieu=  $donnees["lieuExercice"];
 ?>    
     <option value="<?php echo $userID; ?>"> <?php echo $userN ." ". $userP; ?> </option>
 <?php

@@ -163,7 +163,7 @@
             </p>
             <p>
               <label for="txtLibelleHF">* Libellé : </label>
-              <input type="text" id="txtLibelleHF" name="txtLibelleHF" size="12" maxlength="100" 
+              <input type="text" id="txtLibelleHF" name="txtLibelleHF" size="70" maxlength="100" 
                     title="Entrez un bref descriptif des frais" 
                     value="<?php echo filtrerChainePourNavig($libelleHF); ?>" />
             </p>

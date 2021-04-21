@@ -93,7 +93,7 @@
     </p>
 <?php          
             // demande de la requête pour obtenir la liste des éléments 
-            // forfaitisés du visiteur connecté pour le mois demandé 
+            // forfaitisés du visiteur connecté pour le mois demandé
             $req = obtenirReqEltsForfaitFicheFrais($idConnexion,$moisSaisi, obtenirIdUserConnecte());
             $idJeuEltsFraisForfait = mysqli_query($idConnexion,$req);
             echo mysqli_error($idConnexion);

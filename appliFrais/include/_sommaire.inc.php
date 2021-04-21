@@ -42,9 +42,6 @@
            <li class="smenu">
               <a href="cSeDeconnecter.php" title="Se déconnecter">Se déconnecter</a>
            </li>
-            <li class="smenu">
-              <a href="cAppli.php" title="demarrage de l'appli">Application</a>
-           </li>
 
    <?php 
       if($_SESSION["numPoste"] == 0) { ?>
@@ -54,7 +51,9 @@
            <li class="smenu">
               <a href="cConsultFichesFrais.php" title="Consultation de mes fiches de frais">Mes fiches de frais</a>
            </li>
-          
+           <li class="smenu">
+              <a href="appAcceuil.php" title="Saisie Compte-Rendus"> Saisie Compte-Rendus  </a>
+           </li>
    <?php 
       }
       else if($_SESSION["numPoste"] == 1) { ?>
