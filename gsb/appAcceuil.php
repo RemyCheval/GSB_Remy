@@ -24,7 +24,7 @@
 	require($repInclude . "_sommaire.inc.php");
 
 
-    //Récupération des lignes de la table users
+    //Récupération des lignes de la table praticiens
         $sqlListUser = $idConnexion->query("SELECT * FROM praticien");
         
     //Initialiser un tableau

@@ -19,7 +19,7 @@ function connecterServeurBD() {
     $login = "root";
     $mdp = "root";
     // return mysql_connect($hote, $login, $mdp);
-    $mysqli = new mysqli($hote, $login, $mdp,"gsb_frais");
+    $mysqli = new mysqli($hote, $login, $mdp,"gsb");
     $mysqli->set_charset("utf8");
     
     return $mysqli;

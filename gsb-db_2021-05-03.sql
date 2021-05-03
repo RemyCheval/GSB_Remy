@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 26 avr. 2021 à 09:57
+-- Généré le : lun. 03 mai 2021 à 14:10
 -- Version du serveur :  8.0.18
 -- Version de PHP : 7.4.5
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `gsb_frais`
+-- Base de données : `gsb`
 --
 
 -- --------------------------------------------------------
@@ -44,7 +44,7 @@ INSERT INTO `compte_rendu` (`idCompRendu`, `dateRapport`, `bilan`, `idPract`, `i
 (1, '2020-11-10', 'Pas terrible', 2, 3, 'a17'),
 (2, '2020-11-10', 'Pas ouf', 2, 3, 'a17'),
 (3, '2020-10-19', 'Pas terrible', 2, 3, 'a17'),
-(4, '2021-04-11', 'test insert', 1, 1, 'a17');
+(4, '2021-04-29', 'test insert', 1, 1, 'a17');
 
 -- --------------------------------------------------------
 
@@ -232,8 +232,17 @@ CREATE TABLE `medicament` (
   `famille` varchar(255) NOT NULL,
   `compo` text NOT NULL,
   `effetIndesi` text NOT NULL,
-  `contreIndic` text NOT NULL
+  `contreIndic` text NOT NULL,
+  `prix` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+
+--
+-- Déchargement des données de la table `medicament`
+--
+
+INSERT INTO `medicament` (`codeM`, `nomCommercial`, `famille`, `compo`, `effetIndesi`, `contreIndic`, `prix`) VALUES
+(1234, 'TRIMYCINE', 'Corticoïde antibiotique et antifongique à usage local ', 'Trimconolone + Néomycine+ Nystatine', 'Ce médicament est un corticoide à activité forte    ', 'Ce médicament est contre-indiqué en cas d\'allergie', 50),
+(4578, 'LIDOXYTRACINE', 'Antibiotique', 'Tétracycline + Lidocaïne\r\n', 'Ce médicament est utilisé en injection', 'Ce médicament est contre indiqué en cas d\'allergie ', 20);
 
 -- --------------------------------------------------------
 
@@ -316,41 +325,44 @@ CREATE TABLE `visiteur` (
   `cp` char(5) DEFAULT NULL,
   `ville` char(30) DEFAULT NULL,
   `dateEmbauche` date DEFAULT NULL,
-  `numPoste` int(2) NOT NULL DEFAULT '0'
+  `numPoste` int(2) NOT NULL DEFAULT '0',
+  `secteur` varchar(255) NOT NULL,
+  `labo` varchar(255) NOT NULL,
+  `idVi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `visiteur`
 --
 
-INSERT INTO `visiteur` (`id`, `nom`, `prenom`, `login`, `mdp`, `adresse`, `cp`, `ville`, `dateEmbauche`, `numPoste`) VALUES
-('a131', 'Villechalane', 'Louis', 'lvillachane', 'jux7g', '8 rue des Charmes', '46000', 'Cahors', '2005-12-21', 0),
-('a17', 'Andre', 'David', 'dandre', 'oppg5', '1 rue Petit', '46200', 'Lalbenque', '1998-11-23', 1),
-('a55', 'Bedos', 'Christian', 'cbedos', 'gmhxd', '1 rue Peranud', '46250', 'Montcuq', '1995-01-12', 0),
-('a93', 'Tusseau', 'Louis', 'ltusseau', 'ktp3s', '22 rue des Ternes', '46123', 'Gramat', '2000-05-01', 1),
-('b13', 'Bentot', 'Pascal', 'pbentot', 'doyw1', '11 allée des Cerises', '46512', 'Bessines', '1992-07-09', 0),
-('b16', 'Bioret', 'Luc', 'lbioret', 'hrjfs', '1 Avenue gambetta', '46000', 'Cahors', '1998-05-11', 0),
-('b19', 'Bunisset', 'Francis', 'fbunisset', '4vbnd', '10 rue des Perles', '93100', 'Montreuil', '1987-10-21', 0),
-('b25', 'Bunisset', 'Denise', 'dbunisset', 's1y1r', '23 rue Manin', '75019', 'paris', '2010-12-05', 0),
-('b28', 'Cacheux', 'Bernard', 'bcacheux', 'uf7r3', '114 rue Blanche', '75017', 'Paris', '2009-11-12', 0),
-('b34', 'Cadic', 'Eric', 'ecadic', '6u8dc', '123 avenue de la République', '75011', 'Paris', '2008-09-23', 0),
-('b4', 'Charoze', 'Catherine', 'ccharoze', 'u817o', '100 rue Petit', '75019', 'Paris', '2005-11-12', 0),
-('b50', 'Clepkens', 'Christophe', 'cclepkens', 'bw1us', '12 allée des Anges', '93230', 'Romainville', '2003-08-11', 0),
-('b59', 'Cottin', 'Vincenne', 'vcottin', '2hoh9', '36 rue Des Roches', '93100', 'Monteuil', '2001-11-18', 0),
-('c14', 'Daburon', 'François', 'fdaburon', '7oqpv', '13 rue de Chanzy', '94000', 'Créteil', '2002-02-11', 1),
-('c3', 'De', 'Philippe', 'pde', 'gk9kx', '13 rue Barthes', '94000', 'Créteil', '2010-12-14', 0),
-('c54', 'Debelle', 'Michel', 'mdebelle', 'od5rt', '181 avenue Barbusse', '93210', 'Rosny', '2006-11-23', 0),
-('d13', 'Debelle', 'Jeanne', 'jdebelle', 'nvwqq', '134 allée des Joncs', '44000', 'Nantes', '2000-05-11', 0),
-('d51', 'Debroise', 'Michel', 'mdebroise', 'sghkb', '2 Bld Jourdain', '44000', 'Nantes', '2001-04-17', 1),
-('e22', 'Desmarquest', 'Nathalie', 'ndesmarquest', 'f1fob', '14 Place d Arc', '45000', 'Orléans', '2005-11-12', 0),
-('e24', 'Desnost', 'Pierre', 'pdesnost', '4k2o5', '16 avenue des Cèdres', '23200', 'Guéret', '2001-02-05', 0),
-('e39', 'Dudouit', 'Frédéric', 'fdudouit', '44im8', '18 rue de l église', '23120', 'GrandBourg', '2000-08-01', 0),
-('e49', 'Duncombe', 'Claude', 'cduncombe', 'qf77j', '19 rue de la tour', '23100', 'La souteraine', '1987-10-10', 0),
-('e5', 'Enault-Pascreau', 'Céline', 'cenault', 'y2qdu', '25 place de la gare', '23200', 'Gueret', '1995-09-01', 0),
-('e52', 'Eynde', 'Valérie', 'veynde', 'i7sn3', '3 Grand Place', '13015', 'Marseille', '1999-11-01', 0),
-('f21', 'Finck', 'Jacques', 'jfinck', 'mpb3t', '10 avenue du Prado', '13002', 'Marseille', '2001-11-10', 0),
-('f39', 'Frémont', 'Fernande', 'ffremont', 'xs5tq', '4 route de la mer', '13012', 'Allauh', '1998-10-01', 0),
-('f4', 'Gest', 'Alain', 'agest', 'dywvt', '30 avenue de la mer', '13025', 'Berre', '1985-11-01', 0);
+INSERT INTO `visiteur` (`id`, `nom`, `prenom`, `login`, `mdp`, `adresse`, `cp`, `ville`, `dateEmbauche`, `numPoste`, `secteur`, `labo`, `idVi`) VALUES
+('a131', 'Villechalane', 'Louis', 'lvillachane', 'jux7g', '8 rue des Charmes', '46000', 'Cahors', '2005-12-21', 1, 'Est', 'Bichat', 1),
+('a17', 'Andre', 'David', 'dandre', 'oppg5', '1 rue Petit', '46200', 'Lalbenque', '1998-11-23', 0, 'Sud', 'Swiss Kane', 2),
+('a55', 'Bedos', 'Christian', 'cbedos', 'gmhxd', '1 rue Peranud', '46250', 'Montcuq', '1995-01-12', 0, 'Ouest', 'Gyverny', 3),
+('a93', 'Tusseau', 'Louis', 'ltusseau', 'ktp3s', '22 rue des Ternes', '46123', 'Gramat', '2000-05-01', 0, 'Est', 'Swiss Kane', 4),
+('b13', 'Bentot', 'Pascal', 'pbentot', 'doyw1', '11 allée des Cerises', '46512', 'Bessines', '1992-07-09', 0, 'Sud', 'Bichat', 5),
+('b16', 'Bioret', 'Luc', 'lbioret', 'hrjfs', '1 Avenue gambetta', '46000', 'Cahors', '1998-05-11', 0, 'Nord', 'Gyverny', 6),
+('b19', 'Bunisset', 'Francis', 'fbunisset', '4vbnd', '10 rue des Perles', '93100', 'Montreuil', '1987-10-21', 0, 'Sud', 'Swiss Kane', 7),
+('b25', 'Bunisset', 'Denise', 'dbunisset', 's1y1r', '23 rue Manin', '75019', 'paris', '2010-12-05', 0, 'Ouest', 'Gyverny', 8),
+('b28', 'Cacheux', 'Bernard', 'bcacheux', 'uf7r3', '114 rue Blanche', '75017', 'Paris', '2009-11-12', 0, 'Sud', 'Bichat', 9),
+('b34', 'Cadic', 'Eric', 'ecadic', '6u8dc', '123 avenue de la République', '75011', 'Paris', '2008-09-23', 0, 'Est', 'Gyverny', 10),
+('b4', 'Charoze', 'Catherine', 'ccharoze', 'u817o', '100 rue Petit', '75019', 'Paris', '2005-11-12', 0, 'Nord', 'Bichat', 11),
+('b50', 'Clepkens', 'Christophe', 'cclepkens', 'bw1us', '12 allée des Anges', '93230', 'Romainville', '2003-08-11', 0, 'Ouest', 'Swiss Kane', 12),
+('b59', 'Cottin', 'Vincenne', 'vcottin', '2hoh9', '36 rue Des Roches', '93100', 'Monteuil', '2001-11-18', 0, 'Sud', 'Bichat', 13),
+('c14', 'Daburon', 'François', 'fdaburon', '7oqpv', '13 rue de Chanzy', '94000', 'Créteil', '2002-02-11', 0, 'Nord', 'Bichat', 14),
+('c3', 'De', 'Philippe', 'pde', 'gk9kx', '13 rue Barthes', '94000', 'Créteil', '2010-12-14', 0, 'Est', 'Swiss Kane', 15),
+('c54', 'Debelle', 'Michel', 'mdebelle', 'od5rt', '181 avenue Barbusse', '93210', 'Rosny', '2006-11-23', 0, 'Ouest', 'Gyverny', 16),
+('d13', 'Debelle', 'Jeanne', 'jdebelle', 'nvwqq', '134 allée des Joncs', '44000', 'Nantes', '2000-05-11', 0, 'Nord', 'Swiss Kane', 17),
+('d51', 'Debroise', 'Michel', 'mdebroise', 'sghkb', '2 Bld Jourdain', '44000', 'Nantes', '2001-04-17', 0, 'Sud', 'Gyverny', 18),
+('e22', 'Desmarquest', 'Nathalie', 'ndesmarquest', 'f1fob', '14 Place d Arc', '45000', 'Orléans', '2005-11-12', 0, 'Sud', 'Bichat', 19),
+('e24', 'Desnost', 'Pierre', 'pdesnost', '4k2o5', '16 avenue des Cèdres', '23200', 'Guéret', '2001-02-05', 0, 'Nord', 'Bichat', 20),
+('e39', 'Dudouit', 'Frédéric', 'fdudouit', '44im8', '18 rue de l église', '23120', 'GrandBourg', '2000-08-01', 0, 'Ouest', 'Swiss Kane', 21),
+('e49', 'Duncombe', 'Claude', 'cduncombe', 'qf77j', '19 rue de la tour', '23100', 'La souteraine', '1987-10-10', 0, 'Est', 'Gyverny', 22),
+('e5', 'Enault-Pascreau', 'Céline', 'cenault', 'y2qdu', '25 place de la gare', '23200', 'Gueret', '1995-09-01', 0, 'Ouest', 'Swiss Kane', 23),
+('e52', 'Eynde', 'Valérie', 'veynde', 'i7sn3', '3 Grand Place', '13015', 'Marseille', '1999-11-01', 0, 'Nord', 'Bichat', 24),
+('f21', 'Finck', 'Jacques', 'jfinck', 'mpb3t', '10 avenue du Prado', '13002', 'Marseille', '2001-11-10', 0, 'Ouest', 'Bichat', 25),
+('f39', 'Frémont', 'Fernande', 'ffremont', 'xs5tq', '4 route de la mer', '13012', 'Allauh', '1998-10-01', 0, 'Est', 'Gyverny', 26),
+('f4', 'Gest', 'Alain', 'agest', 'dywvt', '30 avenue de la mer', '13025', 'Berre', '1985-11-01', 0, 'Nord', 'Swiss Kane', 27);
 
 --
 -- Index pour les tables déchargées
@@ -456,7 +468,7 @@ ALTER TABLE `lignefraishorsforfait`
 -- AUTO_INCREMENT pour la table `medicament`
 --
 ALTER TABLE `medicament`
-  MODIFY `codeM` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `codeM` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4579;
 
 --
 -- AUTO_INCREMENT pour la table `motif`

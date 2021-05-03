@@ -54,6 +54,15 @@
            <li class="smenu">
               <a href="appAcceuil.php" title="Saisie Compte-Rendus"> Saisie Compte-Rendus  </a>
            </li>
+           <li class="smenu">
+              <a href="cVisiteur.php" title="Voir Visiteurs"> Voir Visiteurs  </a>
+           </li>
+           <li class="smenu">
+              <a href="cPraticien.php" title="Voir practiciens"> Voir praticiens  </a>
+           </li>
+           <li class="smenu">
+              <a href="cMedicament.php" title="Voir medicaments"> Voir medicaments  </a>
+           </li>
    <?php 
       }
       else if($_SESSION["numPoste"] == 1) { ?>
